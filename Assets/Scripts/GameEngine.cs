@@ -73,7 +73,7 @@ public class GameEngine : MonoBehaviour {
 			else
 				highscoreInGame.text = playerScript.Score.ToString();
 			
-			playAudio ();
+			StartCoroutine(playAudio());
 			checkPlayerDeath ();
 			if (cameraMovement.transform.position.y >= Variables.MapRestartPoint)
 				resetCamera();
@@ -131,10 +131,10 @@ public class GameEngine : MonoBehaviour {
 	}
 
 	private void resetCamera () {
-        playerScript.ResetCamera();
-		cameraMovement.ResetCamera();
-		chunkFactory.ResetCamera();
-		backgroundController.ResetCamera();
+        StartCoroutine(playerScript.ResetCamera());
+		StartCoroutine(cameraMovement.ResetCamera());
+		StartCoroutine(chunkFactory.ResetCamera());
+        StartCoroutine(backgroundController.ResetCamera());
 	}
 
 	private void initialiseMenus () {
@@ -219,9 +219,9 @@ public class GameEngine : MonoBehaviour {
 		visibleButtons.Clear ();
 	}
 
-	private void playAudio () {
+	private IEnumerator playAudio () {
 		if (GetComponent<AudioSource>().isPlaying) 
-			return;
+			yield break;
 
 		GetComponent<AudioSource>().clip = gameMusic[Random.Range(0,gameMusic.Length)];
 		GetComponent<AudioSource>().Play();

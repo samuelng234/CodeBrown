@@ -71,10 +71,12 @@ public class BackgroundController : MonoBehaviour {
 		initialise ();
 	}
 	
-	public void ResetCamera() {
+	public IEnumerator ResetCamera() {
 		resetCameraBackground ();
 		resetCameraLiquid ();
-	}
+
+        yield break;
+    }
 
 	private void initialise () {
 		previousBackground = -1;

@@ -30,7 +30,7 @@ public class LevelChunkFactory : MonoBehaviour {
 
 	void FixedUpdate () {
 		if (ChunkTriggered && boss == null)
-			triggerNewChunk();
+            StartCoroutine(triggerNewChunk());
 	}
 
 	public void Reset () {
@@ -54,7 +54,7 @@ public class LevelChunkFactory : MonoBehaviour {
 		boss = null;
 	}
 	
-	public void ResetCamera() {
+	public IEnumerator ResetCamera() {
 		endChunkPos.y = endChunkPos.y - Variables.MapRestartPoint;
 		foreach (LevelChunk chunk in LevelChunkQueue) {
 			if (chunk != null)
@@ -63,14 +63,18 @@ public class LevelChunkFactory : MonoBehaviour {
 
 		if (boss != null)
 			boss.ResetCamera ();
-	}
+
+        yield break;
+    }
 	
-	private void triggerNewChunk() {
+	private IEnumerator triggerNewChunk() {
 		endChunkPos.y = endChunkPos.y + Variables.LevelChunkSeperation;
 		enqueueChunk(getRandomChunk(), endChunkPos, Variables.DefaultQuaternion);
 		if (LevelChunkQueue.Count > 3)
 			dequeueChunk ();
-	}
+
+        yield break;
+    }
 	
 	private int getRandomChunk() {
 		return UnityEngine.Random.Range (0, Variables.LevelChunks.Length);

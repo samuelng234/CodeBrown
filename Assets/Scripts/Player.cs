@@ -135,9 +135,11 @@ public class Player : MonoBehaviour {
 		currentSize = 1;
 	}
 	
-	public void ResetCamera() {
+	public IEnumerator ResetCamera() {
 		transform.position = new Vector3(transform.position.x, transform.position.y - Variables.MapRestartPoint, transform.position.z);
 		camResetCount++;
+
+        yield break;
 	}
 
 	private void run () {

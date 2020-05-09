@@ -25,7 +25,9 @@ public class CameraMovement : MonoBehaviour {
 		}
 	}
 	
-	public void ResetCamera() {
+	public IEnumerator ResetCamera() {
 		transform.position = new Vector3 (transform.position.x, transform.position.y - Variables.MapRestartPoint, transform.position.z);
-	}
+
+        yield break;
+    }
 }

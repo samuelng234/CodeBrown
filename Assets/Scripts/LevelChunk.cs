@@ -21,19 +21,19 @@ public class LevelChunk : MonoBehaviour {
 		player = (Player)GameObject.FindGameObjectWithTag (Variables.PlayerPrefabName).GetComponent (Variables.PlayerPrefabName);
 		pool = (ObjectPool)GameObject.FindGameObjectWithTag ("GameEngine").GetComponent ("ObjectPool");
 		getSpawnPoints ();
-		randomiseEnemySpawn ();
-		randomiseItemSpawn ();
+		StartCoroutine(randomiseEnemySpawn());
+        StartCoroutine(randomiseItemSpawn());
 	}
 	
 	public void ResetCamera() {
 		transform.position = new Vector3(transform.position.x, transform.position.y - Variables.MapRestartPoint, transform.position.z);
-		resetCameraEnemies ();
-		resetCameraItems ();
+		StartCoroutine(resetCameraEnemies());
+		StartCoroutine(resetCameraItems());
 	}
 	
 	public void DestroyAll() {
-		destroyEnemies ();
-		destroyItems ();
+		StartCoroutine(destroyEnemies());
+		StartCoroutine(destroyItems());
 	}
 	
 	private void getSpawnPoints() {
@@ -52,7 +52,7 @@ public class LevelChunk : MonoBehaviour {
 		}
 	}
 
-	private void randomiseEnemySpawn () {
+	private IEnumerator randomiseEnemySpawn () {
 		foreach (Transform spawn in enemySpawns) {
 			int spawnChance = UnityEngine.Random.Range (0, 100);
 
@@ -63,9 +63,11 @@ public class LevelChunk : MonoBehaviour {
 				enemyList.Add(obj);
 			}
 		}
+
+        yield break;
 	}
 
-	private void randomiseItemSpawn() {
+	private IEnumerator randomiseItemSpawn() {
 		foreach (Transform spawn in itemSpawns) {
 			int spawnChance = UnityEngine.Random.Range (0, 100);
 			
@@ -76,10 +78,12 @@ public class LevelChunk : MonoBehaviour {
 				itemList.Add(obj);
 			}
 		}
-	}
+
+        yield break;
+    }
 
 
-	private void resetCameraEnemies() {
+	private IEnumerator resetCameraEnemies() {
 		foreach (GameObject obj in enemyList) {
 			if(obj != null) {
 				if (obj.tag == "WormCluster")
@@ -88,16 +92,20 @@ public class LevelChunk : MonoBehaviour {
 					((CameraReset)obj.GetComponent("CameraReset")).ResetCamera ();
 			}
 		}
+
+        yield break;
 	}
 	
-	private void resetCameraItems() {
+	private IEnumerator resetCameraItems() {
 		foreach (GameObject obj in itemList) {
 			if(obj != null) {
 				PoopItem item = (PoopItem)obj.GetComponent("PoopItem");
 				item.ResetCamera ();
 			}
 		}
-	}
+
+        yield break;
+    }
 
 	private string chooseRandomEnemy () {
 		int enemySelection = UnityEngine.Random.Range (0, Variables.EnemySprites.Length);
@@ -117,7 +125,7 @@ public class LevelChunk : MonoBehaviour {
 		return Variables.PoopSprites[itemSelection];
 	}
 	
-	private void destroyEnemies() {
+	private IEnumerator destroyEnemies() {
 		foreach (GameObject obj in enemyList) {
 			if (obj.tag == "WormCluster") {
 				//((WormGroup)obj.GetComponent("WormGroup")).DestroyEnemies();
@@ -138,12 +146,16 @@ public class LevelChunk : MonoBehaviour {
 		}
 
 		enemyList.Clear ();
+
+        yield break;
 	}
 	
-	private void destroyItems() {
+	private IEnumerator destroyItems() {
 		foreach (GameObject obj in itemList)
 			Destroy (obj);
 
 		itemList.Clear ();
-	}
+
+        yield break;
+    }
 }

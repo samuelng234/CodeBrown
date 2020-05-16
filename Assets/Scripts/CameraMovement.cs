@@ -9,7 +9,7 @@ public class CameraMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		gameEngine = (GameEngine)GameObject.FindWithTag ("GameEngine").GetComponent("GameEngine");
+		gameEngine = GameObject.FindWithTag("GameEngine").GetComponent<GameEngine>();
 	}
 	
 	// Update is called once per frame

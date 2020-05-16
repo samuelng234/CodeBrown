@@ -124,7 +124,7 @@ public class Boss : MonoBehaviour {
 	public void ResetCamera () {
 		foreach (GameObject obj in bodies) {
 			if(obj != null) {
-				((CameraReset)obj.GetComponent("CameraReset")).ResetCamera ();
+				obj.GetComponent<CameraReset>().ResetCamera();
 			}
 		}
 

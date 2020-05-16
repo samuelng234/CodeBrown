@@ -18,8 +18,8 @@ public class LevelChunk : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		player = (Player)GameObject.FindGameObjectWithTag (Variables.PlayerPrefabName).GetComponent (Variables.PlayerPrefabName);
-		pool = (ObjectPool)GameObject.FindGameObjectWithTag ("GameEngine").GetComponent ("ObjectPool");
+		player = GameObject.FindGameObjectWithTag (Variables.PlayerPrefabName).GetComponent<Player>();
+		pool = GameObject.FindGameObjectWithTag ("GameEngine").GetComponent<ObjectPool>();
 		getSpawnPoints ();
 		StartCoroutine(randomiseEnemySpawn());
         StartCoroutine(randomiseItemSpawn());
@@ -87,9 +87,9 @@ public class LevelChunk : MonoBehaviour {
 		foreach (GameObject obj in enemyList) {
 			if(obj != null) {
 				if (obj.tag == "WormCluster")
-					((WormGroup)obj.GetComponent("WormGroup")).ResetCamera ();
+					obj.GetComponent<WormGroup>().ResetCamera();
 				else
-					((CameraReset)obj.GetComponent("CameraReset")).ResetCamera ();
+					obj.GetComponent<CameraReset>().ResetCamera ();
 			}
 		}
 
@@ -99,7 +99,7 @@ public class LevelChunk : MonoBehaviour {
 	private IEnumerator resetCameraItems() {
 		foreach (GameObject obj in itemList) {
 			if(obj != null) {
-				PoopItem item = (PoopItem)obj.GetComponent("PoopItem");
+				PoopItem item = obj.GetComponent<PoopItem>();
 				item.ResetCamera ();
 			}
 		}
@@ -129,7 +129,7 @@ public class LevelChunk : MonoBehaviour {
 		foreach (GameObject obj in enemyList) {
 			if (obj.tag == "WormCluster") {
 				//((WormGroup)obj.GetComponent("WormGroup")).DestroyEnemies();
-				List<GameObject> worms = ((WormGroup)obj.GetComponent("WormGroup")).GetWorms();
+				List<GameObject> worms = obj.GetComponent<WormGroup>().GetWorms();
 				foreach (GameObject o in worms) {
 					if (o.tag == "Worm1")
 						pool.AddWorm1(o);

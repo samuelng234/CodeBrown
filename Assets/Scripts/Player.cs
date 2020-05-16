@@ -189,7 +189,7 @@ public class Player : MonoBehaviour {
 		int spawnChance = UnityEngine.Random.Range (0, 100);
 		
 		if (spawnChance < (Variables.BossSpawnPerc * 100)) {
-			LevelChunkFactory factory = (LevelChunkFactory)GameObject.FindGameObjectWithTag ("ChunkFactory").GetComponent ("LevelChunkFactory");
+			LevelChunkFactory factory = GameObject.FindGameObjectWithTag("ChunkFactory").GetComponent<LevelChunkFactory>();
 			factory.createBoss ();
 		}
 	}

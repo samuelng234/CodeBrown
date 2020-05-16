@@ -45,9 +45,9 @@ public class LevelChunkFactory : MonoBehaviour {
 
 	private void initialise () {
 		LevelChunkQueue = new Queue<LevelChunk> ();
-		camera = (CameraMovement)(GameObject.FindGameObjectWithTag ("MainCamera").GetComponent("CameraMovement"));
+		camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraMovement>();
 		GameObject temp = GameObject.FindGameObjectWithTag ("Player");
-		player = (Player)temp.GetComponent ("Player");
+		player = temp.GetComponent<Player>();
 		enqueueChunk(getRandomChunk(), Variables.FirstMapVector, Variables.DefaultQuaternion);
 		endChunkPos = Variables.FirstMapVector;
 		ChunkTriggered = false;
@@ -83,7 +83,7 @@ public class LevelChunkFactory : MonoBehaviour {
 	private void enqueueChunk(int chunk, Vector3 position, Quaternion rotation) {
 		string loadString = "Spawn Chunks/" + Variables.LevelChunks [chunk];
 		GameObject g = (GameObject)Instantiate (Resources.Load(loadString), position, rotation);
-		LevelChunkQueue.Enqueue((LevelChunk)g.GetComponent (typeof(LevelChunk)));
+		LevelChunkQueue.Enqueue(g.GetComponent<LevelChunk>());
 		ChunkTriggered = false;
 	}
 	
@@ -97,7 +97,7 @@ public class LevelChunkFactory : MonoBehaviour {
 		if (boss == null) {
 			Vector3 position = new Vector3 (endChunkPos.x, endChunkPos.y + 10, endChunkPos.z);
 			GameObject obj = (GameObject)Instantiate (Resources.Load ("Prefabs/" + Variables.BossHeadName), position, Variables.DefaultQuaternion);
-			boss = (Boss)obj.GetComponent ("Boss");
+			boss = obj.GetComponent<Boss>();
 		}
 	}
 
@@ -106,7 +106,7 @@ public class LevelChunkFactory : MonoBehaviour {
 		string loadString = "Spawn Chunks/" + Variables.LevelChunks [random];
 		endChunkPos.y = player.transform.position.y + Variables.ChunkRestartSeperation;
 		GameObject g = (GameObject)Instantiate (Resources.Load(loadString), endChunkPos, Variables.DefaultQuaternion);
-		LevelChunkQueue.Enqueue((LevelChunk)g.GetComponent (typeof(LevelChunk)));
+		LevelChunkQueue.Enqueue(g.GetComponent<LevelChunk>());
 		ChunkTriggered = false;
 	}
 }

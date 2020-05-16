@@ -8,13 +8,13 @@ public class BossTrigger : MonoBehaviour {
 	private
 	
 	void Start () {
-		player = (Player)GameObject.FindGameObjectWithTag("Player").GetComponent("Player");;
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.tag == "Player" && !triggered) {
-			LevelChunkFactory factory = (LevelChunkFactory)GameObject.FindGameObjectWithTag ("ChunkFactory").GetComponent("LevelChunkFactory");
-			Boss boss = (Boss)GameObject.FindGameObjectWithTag ("BossHead").GetComponent("Boss");
+			LevelChunkFactory factory = GameObject.FindGameObjectWithTag("ChunkFactory").GetComponent<LevelChunkFactory>();
+			Boss boss = GameObject.FindGameObjectWithTag("BossHead").GetComponent<Boss>();
 			factory.RestartChunk ();
 			boss.Destroy ();
 			triggered = true;

@@ -7,12 +7,12 @@ public class ChunkTrigger : MonoBehaviour {
 	private Player player;
 
 	void Start () {
-		player = (Player)GameObject.FindGameObjectWithTag("Player").GetComponent("Player");;
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();;
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.tag == "Player" && !player.chunkTriggerCollision) {
-			LevelChunkFactory factory = (LevelChunkFactory)GameObject.FindGameObjectWithTag ("ChunkFactory").GetComponent("LevelChunkFactory");
+			LevelChunkFactory factory = GameObject.FindGameObjectWithTag ("ChunkFactory").GetComponent<LevelChunkFactory>();
 			factory.ChunkTriggered = true;
 			player.chunkTriggerCollision = true;
 			//triggered = true;

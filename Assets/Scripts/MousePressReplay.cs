@@ -10,7 +10,7 @@ public class MousePressReplay : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		pressed = false;
-		gameEngine = (GameEngine)GameObject.FindWithTag ("GameEngine").GetComponent("GameEngine");
+		gameEngine = GameObject.FindWithTag ("GameEngine").GetComponent<GameEngine>();
 		mainCamera = GameObject.FindGameObjectWithTag ("MainCamera");
 	}
 

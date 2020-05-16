@@ -10,8 +10,9 @@ public class WormGroup : MonoBehaviour {
 	void Start () {
 		int randChoice;
 
-		pool = (ObjectPool)GameObject.FindGameObjectWithTag ("GameEngine").GetComponent ("ObjectPool");
-		foreach (Transform spawn in transform) {
+		pool = GameObject.FindGameObjectWithTag ("GameEngine").GetComponent<ObjectPool>(); ;
+        
+        foreach (Transform spawn in transform) {
 			randChoice = Random.Range (0, Variables.WormSprites.Length);
 			GameObject obj = null;
 			Worm worm = null;
@@ -27,7 +28,7 @@ public class WormGroup : MonoBehaviour {
 					
 			obj.transform.position = new Vector3(spawn.position.x, spawn.position.y, 0.1f);
 			obj.SetActive(true);
-			worm = (Worm)obj.GetComponent("Worm");
+			worm = obj.GetComponent<Worm>();
 			worm.SetSpeed ();
 			worm.CheckOutOfBounds ();
 			worms.Add (worm.gameObject);
@@ -60,7 +61,7 @@ public class WormGroup : MonoBehaviour {
 
 	public void ResetCamera() {
 		foreach (GameObject obj in worms)
-			((Worm)obj.GetComponent("Worm")).ResetCamera ();
+			obj.GetComponent<Worm>().ResetCamera ();
 	}
 
 	public List<GameObject> GetWorms () {

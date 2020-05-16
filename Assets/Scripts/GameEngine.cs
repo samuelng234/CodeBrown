@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -13,7 +14,7 @@ public class GameEngine : MonoBehaviour {
 	private SpriteRenderer highscoreLabel;
 	private MeshRenderer highscore;
 	private TextMesh highscoreMesh;
-	private GUIText highscoreInGame;
+	private Text highscoreInGame;
 	private SpriteRenderer replayLabel;
 	private SpriteRenderer bgDimmer;
 	private GameObject title;
@@ -51,7 +52,7 @@ public class GameEngine : MonoBehaviour {
 		initialiseMenus ();
 		initialiseAudio ();
 
-		cameraMovement = (CameraMovement)GameObject.FindGameObjectWithTag ("MainCamera").GetComponent("CameraMovement");
+		cameraMovement = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
 		mainCamera = GameObject.FindGameObjectWithTag ("MainCamera");
 		menuCamera = GameObject.FindGameObjectWithTag ("MenuCamera");
         
@@ -151,9 +152,10 @@ public class GameEngine : MonoBehaviour {
 		replayLabel = replayObj.GetComponent<SpriteRenderer> ();
 		bgDimmer = bgDimmerObj.GetComponent<SpriteRenderer> ();
 
-		highscoreInGame = (GUIText)GameObject.FindGameObjectWithTag (Variables.HighscoreInGame).GetComponent<GUIText> ();
+		highscoreInGame = GameObject.FindGameObjectWithTag (Variables.HighscoreInGame).GetComponent<Text> ();
+        GameObject obj = GameObject.FindGameObjectWithTag(Variables.HighscoreInGame);
 
-		gameTitle.color = new Color (1f, 1f, 1f, alpha);
+        gameTitle.color = new Color (1f, 1f, 1f, alpha);
 		highscoreLabel.color = new Color (1f, 1f, 1f, alpha);
 		highscoreMesh.color = new Color (highscoreMesh.color.r, highscoreMesh.color.g, highscoreMesh.color.b, alpha);
 
@@ -180,8 +182,8 @@ public class GameEngine : MonoBehaviour {
 
         //player = playerObj;
         playerScript = player.GetComponent<Player>();
-		backgroundController = (BackgroundController)bgControlObj.GetComponent ("BackgroundController");
-		chunkFactory = (LevelChunkFactory)chunkFactoryObj.GetComponent ("LevelChunkFactory");
+		backgroundController = bgControlObj.GetComponent<BackgroundController>();
+		chunkFactory = chunkFactoryObj.GetComponent<LevelChunkFactory>();
 
 		highscoreInGame.enabled = true;
 	}
@@ -214,7 +216,7 @@ public class GameEngine : MonoBehaviour {
 	
 	private void clearButtons () {
 		foreach (GameObject button in visibleButtons) {
-			button.GetComponent<GUITexture>().enabled = false;
+			button.GetComponent<Image>().enabled = false;
 		}
 		visibleButtons.Clear ();
 	}
@@ -311,7 +313,7 @@ public class GameEngine : MonoBehaviour {
 		if (screenHeight != Screen.height) {
 			float highScoreOffsetX = Variables.HighScoreRatio * -Screen.height;
 			float highScoreOffsetY = Screen.height * 0.9f;
-			highscoreInGame.pixelOffset = new Vector2 (highScoreOffsetX ,highScoreOffsetY);
+			highscoreInGame.PixelAdjustPoint(new Vector2 (highScoreOffsetX ,highScoreOffsetY));
 			highscoreInGame.fontSize = Screen.height / 10;
 			
 			screenHeight = Screen.height;

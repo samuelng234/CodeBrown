@@ -1,12 +1,18 @@
 fileFormatVersion: 2
 guid: 0d9db1c6b8f13024da40f9e1ecd51f6b
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: poopup_item_0
-    21300002: poopup_item_1
-    21300004: poopup_item_2
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: poopup_item_0
+  - first:
+      213: 21300002
+    second: poopup_item_1
+  - first:
+      213: 21300004
+    second: poopup_item_2
   externalObjects: {}
-  serializedVersion: 9
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
@@ -60,8 +66,9 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -72,6 +79,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -91,6 +99,7 @@ TextureImporter:
       tessellationDetail: -1
       bones: []
       spriteID: 3912c9cf007060646b244f9553b014e1
+      internalID: 21300000
       vertices: []
       indices: 
       edges: []
@@ -111,6 +120,7 @@ TextureImporter:
       tessellationDetail: -1
       bones: []
       spriteID: 28605a5a909b5f44d998a97d7b2e354b
+      internalID: 21300002
       vertices: []
       indices: 
       edges: []
@@ -131,6 +141,7 @@ TextureImporter:
       tessellationDetail: -1
       bones: []
       spriteID: 49d22e8c54cf8c84ca84340f6c4dc3e5
+      internalID: 21300004
       vertices: []
       indices: 
       edges: []
@@ -139,10 +150,12 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

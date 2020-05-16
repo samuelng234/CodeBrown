@@ -32,7 +32,7 @@ public class BackgroundController : MonoBehaviour {
 		previousBackground = -1;
 		previousLiquid = -1;
 		cameraObj = GameObject.FindGameObjectWithTag ("MainCamera");
-		cameraMovement = (CameraMovement)(cameraObj.GetComponent("CameraMovement"));
+		cameraMovement = cameraObj.GetComponent<CameraMovement>();
 		backgroundSprites = new Queue<GameObject> ();
 		liquidSprites = new Queue<GameObject> ();
 		loadStart ();
@@ -82,7 +82,7 @@ public class BackgroundController : MonoBehaviour {
 		previousBackground = -1;
 		previousLiquid = -1;
 		cameraObj = GameObject.FindGameObjectWithTag ("MainCamera");
-		cameraMovement = (CameraMovement)(cameraObj.GetComponent("CameraMovement"));
+		cameraMovement = cameraObj.GetComponent<CameraMovement>();
 		backgroundSprites = new Queue<GameObject> ();
 		liquidSprites = new Queue<GameObject> ();
 		loadStart ();
